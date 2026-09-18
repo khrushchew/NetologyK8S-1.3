@@ -19,11 +19,11 @@ kubectl scale deployment nginx-multitool --replicas=2
 
 **До масштабирования — 1 под:**
 
-![1 под](../screenshots/1.png)
+![1 под](screenshots/1.png)
 
 **После масштабирования — 2 пода:**
 
-![2 пода](../screenshots/2.png)
+![2 пода](screenshots/2.png)
 
 ### 4. Service для доступа к репликам
 
@@ -38,7 +38,7 @@ kubectl exec multitool-pod -- curl -s http://svc-nginx-multitool:80
 kubectl exec multitool-pod -- curl -s http://svc-nginx-multitool:8080
 ```
 
-![curl из multitool-pod](../screenshots/3.png)
+![curl из multitool-pod](screenshots/3.png)
 
 Ответ от nginx (порт 80): `Welcome to nginx!`  
 Ответ от multitool (порт 8080): `WBITT Network MultiTool - nginx-multitool-... - HTTP: 8080`
@@ -60,7 +60,7 @@ done
 
 **Пока сервис не создан — pod завис в `Init:0/1`:**
 
-![Init:0/1](../screenshots/4.png)
+![Init:0/1](screenshots/4.png)
 
 ### 3–4. Создание Service и запуск nginx
 
@@ -68,4 +68,4 @@ done
 
 **После создания сервиса — pod перешёл в `Running`:**
 
-![Running](../screenshots/5.png)
+![Running](screenshots/5.png)
