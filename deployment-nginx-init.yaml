@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-with-init
+  labels:
+    app: nginx-with-init
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-with-init
+  template:
+    metadata:
+      labels:
+        app: nginx-with-init
+    spec:
+      initContainers:
+        - name: init-wait-svc
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              until nslookup svc-nginx-init.default.svc.cluster.local; do
+                echo "Waiting for svc-nginx-init...";
+                sleep 2;
+              done
+      containers:
+        - name: nginx
+          image: nginx:1.25
+          ports:
+            - containerPort: 80
